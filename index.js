@@ -1,4 +1,6 @@
 // Test
+const express = require('express')
+const bodyParser = require('body-parser')
 
 let input = ["1233454356\tGET /index.html\t10.10.10.1",
 "1233454356\tGET /index.html\t10.10.10.1",
@@ -44,3 +46,11 @@ MyArr.sort(function(a, b) {
     return parseFloat(b.count) - parseFloat(a.count);
 });
 console.log(MyArr.map((d,i)=> ({"rank": ++i,...d})))
+
+const PORT = process.env.PORT || 3000
+
+const app = express()
+app.use(bodyParser.json())
+app.listen({port: PORT},(port)=>
+  console.log(`🚀  Server ready at http://localhost:${PORT}`)
+)
